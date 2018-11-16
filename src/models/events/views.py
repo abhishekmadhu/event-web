@@ -6,9 +6,14 @@ __author__ = "abhishekmadhu"
 event_blueprint = Blueprint('events', __name__)
 
 
-@event_blueprint.route('/home', methods=['GET'])
+@event_blueprint.route('/', methods=['GET'])
 def events_home():
-    return render_template("home.html")
+    return render_template("event_home.html")
+
+
+@event_blueprint.errorhandler(404)
+def page_not_found(e):
+    return render_template("page_not_found.html")
 
 
 @event_blueprint.route('/new', methods=['GET', 'POST'])
